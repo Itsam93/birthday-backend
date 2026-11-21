@@ -68,12 +68,14 @@ export const getCurrentAdmin = asyncHandler(
     }
 
     const admin = await getAuthenticatedAdmin(req.adminId);
+    const csrfToken = req.cookies?.[CSRF_COOKIE_NAME] ?? null;
 
     res.status(200).json(
       new ApiResponse({
         message: "Administrator retrieved successfully.",
         data: {
           admin,
+          csrfToken,
         },
       }),
     );
