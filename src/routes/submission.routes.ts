@@ -13,10 +13,6 @@ import {
 import validate from "../middleware/validate.js";
 
 import {
-  submissionRateLimiter,
-} from "../middleware/rate-limiter.js";
-
-import {
   createSubmission,
 } from "../controllers/submission.controller.js";
 
@@ -40,7 +36,6 @@ const validateUploadedFile: RequestHandler = (
 
 router.post(
   "/",
-  submissionRateLimiter,
   uploadFile,
   validate(publicSubmissionSchema),
   validateUploadedFile,
